@@ -16,8 +16,77 @@ export class HomeComponent implements OnInit {
     { ten: 'Quýt', gia: -69, haGia: true },
     { ten: 'Ôỉ', gia: -547, haGia: false },
   ];
-  constructor() { }
+  public districts: any[] = []
+  public vietnamData = [
+    {
+      city: 'Chọn Thành Phố',
+      district: [
+        'Chọn Quận Huyện',
+      ],
+    },
+    {
+      city: 'An Giang',
+      district: [
+        'Thành phố Long Xuyên',
+        'Thành phố Châu Đốc',
+        'Thị xã Tân Châu',
+        'Huyện An Phú',
+        'Huyện Châu Phú',
+        'Huyện Châu Thành',
+        'Huyện Chợ Mới',
+        'Huyện Phú Tân',
+        'Huyện Thoại Sơn',
+        'Huyện Tịnh Biên',
+        'Huyện Tri Tôn',
+      ],
+    },
+    {
+      city: 'Bà Rịa - Vũng Tàu',
+      district: [
+        'Thành phố Vũng Tàu',
+        'Thị xã Bà Rịa',
+        'Thị xã Phú Mỹ',
+        'Huyện Châu Đức',
+        'Huyện Côn Đảo',
+        'Huyện Đất Đỏ',
+        'Huyện Long Điền',
+        'Huyện Tân Thành',
+        'Huyện Xuyên Mộc',
+      ],
+    },
+    {
+      city: 'Bạc Liêu',
+      district: [
+        'Thành phố Bạc Liêu',
+        'Huyện Đông Hải',
+        'Huyện Giá Rai',
+        'Huyện Hòa Bình',
+        'Huyện Hồng Dân',
+        'Huyện Phước Long',
+        'Huyện Vĩnh Lợi',
+      ],
+    },
+  ];
+  constructor() {}
   ngOnInit(): void {
-    console.log('trai cay = ' + JSON.stringify(this.traiCay2));
+     console.log('trai cay = ' + JSON.stringify(this.vietnamData));
+    //  console.log('trai cay = ' + this.vietnamData);
+  }
+  public changeCity(event: any): void{
+    const city = event.target.value;
+    // Cách 1
+    // console.log('event', city)
+    // const search = this.vietnamData.filter(data => data.city === city);
+    // console.log("search", search)
+    // if(search && search.length <0){
+    //   this.districts = search[0].district
+    // }
+
+    //Cách 2
+    if(!city){
+      return;
+    }
+    this.districts = 
+    this.vietnamData.find((data) => data.city === city)?.district || [];
   }
 }
